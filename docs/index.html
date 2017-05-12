@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="container">
+              <h1>Observation Series API</h1>
+
+<p>https://kswe2017.daplie.me/api</p>
+
+
+
+<h2>Paths</h2>
+
+    
+    <div class="panel panel-method-get">
+    <div class="panel-heading">
+        <div class="method-summary">Get available features</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/features</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            Endpoint that provides an overview of the current features
+        </section>
+        
+        
+        
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            the overview of the current features
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+        
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Feature">#/definitions/Feature</a>
+
+
+    </div>
+</section>
+    </div>
+</div>                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+        
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Feature">#/definitions/Feature</a>
+
+
+    </div>
+</section>
+    </div>
+</div></td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Unexpected error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Error">#/definitions/Error</a>
+
+
+    </div>
+</div>                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Error">#/definitions/Error</a>
+
+
+    </div>
+</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+    <div class="panel panel-method-get">
+    <div class="panel-heading">
+        <div class="method-summary">resource for one specific feature</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/features/{identifier}</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            a single feature.
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        object                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            The feature with the {identifier}
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Feature">#/definitions/Feature</a>
+
+
+    </div>
+</div>                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Feature">#/definitions/Feature</a>
+
+
+    </div>
+</div></td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Unexpected error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Error">#/definitions/Error</a>
+
+
+    </div>
+</div>                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Error">#/definitions/Error</a>
+
+
+    </div>
+</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>    
+    <div class="panel panel-method-get">
+    <div class="panel-heading">
+        <div class="method-summary">resource for observations of one specific feature</div>
+        <h3 class="panel-title"><span class="method-name">GET</span> <strong>/features/{identifier}/observations</strong></h3>
+    </div>
+    <div class="panel-body">
+        <section class="sw-method-description">
+            a features observations.
+        </section>
+        
+        
+    <section class="sw-request-params">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-param-name"></th>
+                <th class="sw-param-description"></th>
+                <th class="sw-param-type"></th>
+                <th class="sw-param-data-type"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        object                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        
+    <section class="sw-response-body">
+        <p></p>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="sw-response-code"></th>
+                <th class="sw-response-description"></th>
+                <th class="sw-response-data-type hidden-xs hidden-sm"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            resource for observations of one specific feature
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+        
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Observation">#/definitions/Observation</a>
+
+
+    </div>
+</section>
+    </div>
+</div>                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+        
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+            <a class="json-schema-ref" href="#/definitions/Observation">#/definitions/Observation</a>
+
+
+    </div>
+</section>
+    </div>
+</div></td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>
+                        <div class="sw-response-description-text">
+                            Unexpected error
+                        </div>
+                        <section class="visible-xs visible-sm">
+                            
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Error">#/definitions/Error</a>
+
+
+    </div>
+</div>                        </section>
+                    </td>
+                    <td class="hidden-xs hidden-sm">
+    
+<div class="panel panel-definition">
+    <div class="panel-body">
+            <a class="json-schema-ref" href="#/definitions/Error">#/definitions/Error</a>
+
+
+    </div>
+</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+            </div>
+</div>
+
+<h2>Definitions</h2>
+
+    
+    
+<div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Feature"></a>Feature:
+                    <span class="json-property-type">object</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+        
+    <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">identifier:</span>
+                <span class="json-property-type">string</span>
+
+            </dt>
+            <dd>
+                    <span class="json-property-required"></span>
+
+                the unique id of the request
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">geometry:</span>
+                <span class="json-property-type">object</span>
+
+            </dt>
+            <dd>
+                    <span class="json-property-required"></span>
+
+                
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    
+<div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Observation"></a>Observation:
+                    <span class="json-property-type">object</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+        
+    <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">timestamp:</span>
+                <span class="json-property-type">integer</span>
+
+            </dt>
+            <dd>
+                    <span class="json-property-required"></span>
+
+                the Epoch time (unix timestamp) of the observation
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    
+<div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Point2D"></a>Point2D:
+                    <span class="json-property-type">number[]</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+        
+    <section class="json-schema-array-items">
+    <div class="json-inner-schema">
+        
+
+    </div>
+</section>
+    </div>
+</div>    
+    
+<div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Point"></a>Point:
+                    <span class="json-property-type">object</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+            <section class="json-schema-description">
+        GeoJSON point geometry
+    </section>
+
+    <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">type:</span>
+                <span class="json-property-type">string</span>
+
+                    <span class="json-property-enum" title="Possible values">&isin; {
+                            <span class="json-property-enum-item">Point</span>
+                        }
+                        </span>
+            </dt>
+            <dd>
+                    <span class="json-property-required"></span>
+
+                
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">coordinates:</span>
+                <span class="json-property-type">object</span>
+
+            </dt>
+            <dd>
+                    <span class="json-property-required"></span>
+
+                
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>    
+    
+<div class="panel panel-definition">
+        <div class="panel-heading">
+                <h3 class="panel-title"><a name="/definitions/Error"></a>Error:
+                    <span class="json-property-type">object</span>
+                </h3>
+        </div>
+    <div class="panel-body">
+        
+    <section class="json-schema-properties">
+    <dl>
+            <dt>
+                <span class="json-property-name">code:</span>
+                <span class="json-property-type">integer</span>
+
+            </dt>
+            <dd>
+
+                
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">message:</span>
+                <span class="json-property-type">string</span>
+
+            </dt>
+            <dd>
+
+                
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+            <dt>
+                <span class="json-property-name">fields:</span>
+                <span class="json-property-type">string</span>
+
+            </dt>
+            <dd>
+
+                
+                <div class="json-inner-schema">
+                </div>
+            </dd>
+    </dl>
+</section>
+
+    </div>
+</div>        </div>
+    </body>
+</html>

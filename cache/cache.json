@@ -1,0 +1,41 @@
+{
+  "features" :  {
+    "n52-office": {
+      "identifier": "n52-office",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.652036547660827,
+          51.935105827856844
+        ]
+      },
+      "observations": [
+        {
+          "GPU temperature": "0.0",
+          "CPU temperature": "64.00",
+          "timestamp": 1494508944
+        },
+        {
+          "GPU temperature": "0.0",
+          "CPU temperature": "66.00",
+          "timestamp": 1494509044
+        },
+        {
+          "GPU temperature": "0.0",
+          "CPU temperature": "59.00",
+          "timestamp": 1494509144
+        },
+        {
+          "GPU temperature": "0.0",
+          "CPU temperature": "56.00",
+          "timestamp": 1494509244
+        },
+        {
+          "GPU temperature": "0.0",
+          "CPU temperature": "56.00",
+          "timestamp": 1494509344
+        }
+      ]
+    }
+  }
+}

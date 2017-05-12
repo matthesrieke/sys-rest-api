@@ -1,0 +1,135 @@
+swagger: '2.0'
+info:
+  title: Observation Series API
+  description: https://kswe2017.daplie.me/api
+  version: "1.0.0"
+# the domain of the service
+host: kswe2017.daplie.me
+# array of all schemes that the API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /api/
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: observation series API
+paths:
+  /features:
+    get:
+      summary: Get available features
+      description: |
+        Endpoint that provides an overview of the current features
+      tags:
+        - features
+      responses:
+        200:
+          description: the overview of the current features
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Feature'
+        500:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /features/{identifier}:
+    get:
+      summary: resource for one specific feature
+      description: |
+        a single feature.
+      tags:
+        - features
+      parameters:
+        - $ref: '#/parameters/resourceIdentifier'
+      responses:
+        200:
+          description: The feature with the {identifier}
+          schema:
+            $ref: '#/definitions/Feature'
+        500:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /features/{identifier}/observations:
+    get:
+      summary: resource for observations of one specific feature
+      description: |
+        a features observations.
+      tags:
+        - observations
+      parameters:
+        - $ref: '#/parameters/resourceIdentifier'
+      responses:
+        200:
+          description: resource for observations of one specific feature
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Observation'
+        500:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+##Definitions
+definitions:
+  Feature:
+    type: object
+    required: [identifier, geometry]
+    properties:
+      identifier:
+        type: string
+        description: the unique id of the request
+      geometry:
+        $ref: '#/definitions/Point'
+  Observation:
+    type: object
+    required: [timestamp]
+    properties:
+      timestamp:
+        type: integer
+        description: the Epoch time (unix timestamp) of the observation
+
+  #GeoJSON
+  Point2D:
+    type: array
+    maxItems: 2
+    minItems: 2
+    items:
+      type: number
+  Point:
+    type: object
+    description: GeoJSON point geometry
+    required: [type, coordinates]
+    externalDocs:
+      url: http://geojson.org/geojson-spec.html#id2
+    properties:
+      type:
+        type: string
+        enum:
+        - Point
+      coordinates:
+        $ref: '#/definitions/Point2D'
+
+  #Errors
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      fields:
+        type: string
+
+##URL and body Params
+parameters:
+  resourceIdentifier:
+    name: identifier
+    in: path
+    description: a specific resource id
+    required: true
+    type: string
