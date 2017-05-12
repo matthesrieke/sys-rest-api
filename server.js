@@ -5,28 +5,31 @@ var cors = require('cors')
 var converter = require("swagger-to-html")({ /* options */ });
 var YAML = require('yamljs');
 
-// call the lesscss-compiler to generate css
-converter.generateCss('./docs');
-
-// call handlebars to generate the HTML-code
-converter.generateHtml(YAML.load('./swagger.yml'), './docs');
+// // call the lesscss-compiler to generate css
+// converter.generateCss('./docs');
+//
+// // call handlebars to generate the HTML-code
+// converter.generateHtml(YAML.load('./swagger.yml'), './docs');
 
 var app = express();
 app.use(cors());
-
-app.use('/docs', express.static(__dirname + '/docs'));
+//
+// app.use('/docs', express.static(__dirname + '/docs'));
 
 var timeSeries = require('./cache/cache.json');
 timeSeries.features['n52-subsidiary'] = {
-    identifier: "n52-subsidiary",
-    geometry: {
-      type: "Point",
-      coordinates: [
-        7.649244368076324,
-        51.93432195507079
-      ]
-    },
-    observations: []
+      type: "Feature",
+      properties: {
+        identifier: "n52-subsidiary"
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [
+          7.649244368076324,
+          51.93432195507079
+        ]
+      },
+      observations: []
   };
 
 var readData = function() {
@@ -40,11 +43,14 @@ var readData = function() {
 
 app.get('/features', function (req, res) {
   var features = JSON.parse(JSON.stringify(timeSeries.features));
-  var response = [];
+  var response = {
+    type: "FeatureCollection",
+    features: []
+  };
   for (var feat in features) {
     if (features.hasOwnProperty(feat)) {
       delete features[feat].observations;
-      response.push(features[feat]);
+      response.features.push(features[feat]);
     }
   }
   res.send(response);
@@ -60,7 +66,7 @@ app.get('/features/:id', function (req, res) {
       }
     }
   }
-  res.send(resp);
+  res.send(resp[req.params.id]);
 });
 
 app.get('/features/:id/observations', function (req, res) {
