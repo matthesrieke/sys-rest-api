@@ -2,6 +2,7 @@
 var dataService = require('./lib/read-dht22');
 var express = require('express');
 var cors = require('cors')
+var fs = require('fs');
 
 var converter = require("swagger-to-html")({ /* options */ });
 var YAML = require('yamljs');
@@ -18,20 +19,22 @@ app.use(cors());
 // app.use('/docs', express.static(__dirname + '/docs'));
 
 var timeSeries = require('./cache/cache.json');
-timeSeries.features['n52-subsidiary'] = {
-      type: "Feature",
-      properties: {
-        identifier: "n52-subsidiary"
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [
-          7.649244368076324,
-          51.93432195507079
-        ]
-      },
-      observations: []
-  };
+if (!timeSeries.features['n52-subsidiary']) {
+  timeSeries.features['n52-subsidiary'] = {
+        type: "Feature",
+        properties: {
+          identifier: "n52-subsidiary"
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [
+            7.649244368076324,
+            51.93432195507079
+          ]
+        },
+        observations: []
+    };
+}
 
 var readData = function() {
   dataService.readData(function(data) {
@@ -47,6 +50,20 @@ var readData = function() {
   });
 };
 
+
+var updateCache = function() {
+  fs.writeFile('./cache/cache.json', JSON.stringify(timeSeries), function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('cache updated at: ./cache/cache.json');
+  });
+}
+
+
+/**
+* Controller definitions
+*/
 app.get('/features', function (req, res) {
   var features = JSON.parse(JSON.stringify(timeSeries.features));
   var response = {
@@ -88,8 +105,10 @@ app.get('/features/:id/observations', function (req, res) {
   res.send({});
 });
 
-setInterval(readData, 1000*60*0.5);
+setInterval(readData, 1000*60*5);
 readData();
+
+setInterval(updateCache, 1000*60*15 +5000);
 
 app.listen(3000, function () {
   console.log('Data API listening on port 3000!');
