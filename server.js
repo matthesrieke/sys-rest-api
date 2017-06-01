@@ -1,4 +1,5 @@
-var dataService = require('./lib/read-data');
+// var dataService = require('./lib/read-data');
+var dataService = require('./lib/read-dht22');
 var express = require('express');
 var cors = require('cors')
 
@@ -34,6 +35,11 @@ timeSeries.features['n52-subsidiary'] = {
 
 var readData = function() {
   dataService.readData(function(data) {
+    if (!data) {
+      console.warn("could not read data");
+      return;
+    }
+
     data.forEach(function(entry) {
       entry.timestamp = Math.floor(new Date() / 1000);
       timeSeries.features['n52-subsidiary'].observations.unshift(entry);
@@ -82,7 +88,7 @@ app.get('/features/:id/observations', function (req, res) {
   res.send({});
 });
 
-setInterval(readData, 1000*60*5);
+setInterval(readData, 1000*60*0.5);
 readData();
 
 app.listen(3000, function () {
