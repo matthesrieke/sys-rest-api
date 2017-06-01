@@ -9,10 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "//": {
+      "node-dht-sensor": "0.0.32"
+    },
     "cors": "^2.8.3",
     "csv": "^1.1.1",
     "express": "^4.14.0",
-    "//": {"node-dht-sensor": "0.0.32"},
+    "mqtt": "^2.8.0",
     "swagger-to-html": "^0.4.0",
     "yamljs": "^0.2.10"
   }

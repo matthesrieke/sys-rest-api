@@ -3,6 +3,7 @@ var dataService = require('./lib/read-dht22');
 var express = require('express');
 var cors = require('cors')
 var fs = require('fs');
+var mqtt = require('./lib/mqtt-publish');
 
 var converter = require("swagger-to-html")({ /* options */ });
 var YAML = require('yamljs');
@@ -46,6 +47,12 @@ var readData = function() {
     data.forEach(function(entry) {
       entry.timestamp = Math.floor(new Date() / 1000);
       timeSeries.features['n52-subsidiary'].observations.unshift(entry);
+    });
+
+    data.forEach(function(origEntry) {
+      var entry = JSON.parse(JSON.stringify(origEntry));
+      entry.feature = 'n52-subsidiary';
+      mqtt.publish(JSON.stringify(entry), 'pi-weather/'+entry.feature);
     });
   });
 };
